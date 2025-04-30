@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Monitor{% endblock %}
+
+{% block content %}
+<div class="admin-monitor-container">
+    <h1>Team Progress Monitor</h1>
+
+    <div class="admin-actions">
+        <a href="{% url 'question_list' %}" class="btn primary">Manage Questions</a>
+    </div>
+
+    <div class="search-box">
+        <form method="get" class="search-form">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search teams..." class="search-input">
+            <button type="submit" class="btn primary">Search</button>
+        </form>
+    </div>
+
+    <div class="teams-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Team Name</th>
+                    <th>Members</th>
+                    <th>Email</th>
+                    <th>Current Question</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in teams %}
+                <tr>
+                    <td>{{ team.user.username }}</td>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.members }}</td>
+                    <td>{{ team.email }}</td>
+                    <td>{{ team.current_question_number }}</td>
+                    <td>{{ team.score }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="no-teams">No teams found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .admin-actions {
+        margin-bottom: 20px;
+    }
+    
+    .admin-actions .btn {
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+    
+    .admin-actions .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+{% endblock %} 

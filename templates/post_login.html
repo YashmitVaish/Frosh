@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Thank You{% endblock %}
+
+{% block content %}
+<div class="thank-you-container">
+    <h1>Thank You for Registering!</h1>
+    <div class="success-message">
+        <p>Your team has been successfully registered for the Treasure Hunt competition.</p>
+        <p>We'll send you further details and instructions to your registered email address.</p>
+    </div>
+    <div class="next-steps">
+        <h2>Next Steps</h2>
+        <ol>
+            <li>Check your email for confirmation</li>
+            <li>Review the competition rules</li>
+            <li>Prepare your team for the challenge</li>
+        </ol>
+    </div>
+    <div class="action-buttons">
+        <a href="{% url 'rules' %}" class="btn primary">View Rules</a>
+        <a href="{% url 'home' %}" class="btn secondary">Return Home</a>
+    </div>
+</div>
+{% endblock %} 

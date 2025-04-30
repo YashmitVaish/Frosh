@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="welcome-section">
+    <h1>Welcome to the Treasure Hunt!</h1>
+    <p>Join us for an exciting adventure filled with puzzles, challenges, and fun!</p>
+    <div class="cta-buttons">
+        <a href="{% url 'register' %}" class="btn primary">Register Your Team</a>
+        <a href="{% url 'rules' %}" class="btn secondary">View Rules</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <h3>Team Competition</h3>
+        <p>Form a team and compete against others in solving challenging puzzles.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Real-time Leaderboard</h3>
+        <p>Track your progress and see how you rank against other teams.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Exciting Prizes</h3>
+        <p>Win amazing prizes for your problem-solving skills.</p>
+    </div>
+</div>
+{% endblock %} 

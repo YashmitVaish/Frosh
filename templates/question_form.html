@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.id %}Edit Question{% else %}Add Question{% endif %}{% endblock %}
+
+{% block content %}
+<div class="question-form-container">
+    <h1>{% if form.instance.id %}Edit Question{% else %}Add New Question{% endif %}</h1>
+    
+    <form method="post" class="question-form">
+        {% csrf_token %}
+        
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="{{ form.question_number.id_for_label }}">Question Number</label>
+            {{ form.question_number }}
+            {% if form.question_number.errors %}
+            <div class="error-message">{{ form.question_number.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.points.id_for_label }}">Points</label>
+            {{ form.points }}
+            {% if form.points.errors %}
+            <div class="error-message">{{ form.points.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.question_text.id_for_label }}">Question Text</label>
+            {{ form.question_text }}
+            {% if form.question_text.errors %}
+            <div class="error-message">{{ form.question_text.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.answer.id_for_label }}">Answer</label>
+            {{ form.answer }}
+            {% if form.answer.errors %}
+            <div class="error-message">{{ form.answer.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{% if form.instance.id %}Update{% else %}Add{% endif %} Question</button>
+            <a href="{% url 'question_list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    .question-form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+
+    }
+
+    .question-form {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        color: black;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    .question-form input,
+    .question-form textarea,
+    .question-form select {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #ddd;
+        color: black;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        min-height: 100px;
+        resize: vertical;
+        background-color: #ddd;
+        color: black;
+    }
+
+    .error-message {
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        line-height: 2.2;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+{% endblock %} 

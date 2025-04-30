@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Question{% endblock %}
+
+{% block content %}
+<div class="question-container">
+    {% if completed %}
+        <div class="completion-message">
+            <h1>Congratulations!</h1>
+            <p>You have completed all the questions in the treasure hunt!</p>
+            <p>Your final score: {{ team.score }}</p>
+            <a href="{% url 'leaderboard' %}" class="btn primary">View Leaderboard</a>
+        </div>
+    {% else %}
+        <div class="question-header">
+            <h1>Question {{ question.question_number }}</h1>
+            <div class="team-info">
+                <p>Team: {{ team.name }}</p>
+                <p>Score: {{ team.score }}</p>
+            </div>
+        </div>
+
+        <div class="question-content">
+            <p>{{ question.text }}</p>
+        </div>
+
+        <form method="post" class="answer-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.answer }}
+                {% if form.answer.errors %}
+                    <div class="error">{{ form.answer.errors }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn primary">Submit Answer</button>
+        </form>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %} 
